@@ -9,6 +9,7 @@ class FavoriteThing extends Component {
           <h4>{this.props.description}</h4>
         </a>
         <img src={this.props.image_url} alt={this.props.description} />
+        <p>{this.props.rank}</p>
       </div>
     )
   }

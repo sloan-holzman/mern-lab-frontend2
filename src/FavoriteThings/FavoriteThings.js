@@ -44,6 +44,7 @@ class FavoriteThings extends Component {
             description={thing.description}
             image_url={thing.image_url}
             url={thing.url}
+            rank={thing.rank}
           />
         ))}
       </div>

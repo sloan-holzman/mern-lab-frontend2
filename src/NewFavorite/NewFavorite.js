@@ -28,7 +28,6 @@ class NewFavorite extends Component {
 
   onSubmitForm(e) {
     e.preventDefault()
-    console.log(this.state.description)
     axios
       .post("http://localhost:3001/api/favorite-things", {
         description: this.state.description,
