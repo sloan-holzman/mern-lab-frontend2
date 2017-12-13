@@ -41,6 +41,7 @@ class FavoriteThings extends Component {
         {this.state.favoriteThings.map(thing => (
           <FavoriteThing
             key={thing._id}
+            id={thing._id}
             description={thing.description}
             image_url={thing.image_url}
             url={thing.url}
