@@ -11,7 +11,8 @@ class FavoriteThings extends Component {
     }
     this.retrieveThings = this.retrieveThings.bind(this)
     this.setThings = this.setThings.bind(this)
-    this.forceUpdateMethod = this.forceUpdateMethod.bind(this)
+    this.increaseRank = this.increaseRank.bind(this)
+    this.decreaseRank = this.decreaseRank.bind(this)
   }
 
   retrieveThings() {
@@ -26,8 +27,32 @@ class FavoriteThings extends Component {
       })
   }
 
-  forceUpdateMethod() {
-    this.forceUpdate()
+  increaseRank(e,id) {
+    e.preventDefault()
+    axios
+      .put(`http://localhost:3001/api/favorite-things/increase-rank/${id}`)
+      .then((response) =>{
+        console.log(response)
+        console.log("increased")
+        this.retrieveThings()
+      })
+      .catch(err => {
+        console.log(err)
+      })
+      console.log("increased!!")
+  }
+
+  decreaseRank(e,id) {
+    e.preventDefault()
+    axios
+      .put(`http://localhost:3001/api/favorite-things/decrease-rank/${id}`)
+      .then(() =>{
+        console.log("forcing update")
+        this.retrieveThings()
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   setThings(data) {
@@ -54,7 +79,8 @@ class FavoriteThings extends Component {
             image_url={thing.image_url}
             url={thing.url}
             rank={thing.rank}
-            forceUpdateMethod={this.forceUpdateMethod}
+            increaseRank={this.increaseRank}
+            decreaseRank={this.decreaseRank}
             count={this.state.count}
           />
         ))}

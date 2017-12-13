@@ -8,38 +8,9 @@ import axios from "axios"
 class FavoriteThing extends Component {
   constructor(props) {
     super(props)
-    this.increaseRank = this.increaseRank.bind(this)
-    this.decreaseRank = this.decreaseRank.bind(this)
   }
 
-increaseRank(e) {
-  console.log("increase rank")
-  axios
-    .put(`http://localhost:3001/api/favorite-things/increase-rank/${this.props.id}`)
-    .then((response) =>{
-      console.log(response)
-      console.log("increased")
-      this.props.forceUpdateMethod()
-    })
-    .catch(err => {
-      console.log(err)
-    })
-    console.log("increased!!")
-    this.props.forceUpdateMethod()
-}
 
-decreaseRank(e) {
-  console.log("decrease rank")
-  axios
-    .put(`http://localhost:3001/api/favorite-things/decrease-rank/${this.props.id}`)
-    .then(() =>{
-      console.log("forcing update")
-      this.props.forceUpdateMethod()
-    })
-    .catch(err => {
-      console.log(err)
-    })
-}
 
 
 
@@ -47,14 +18,14 @@ decreaseRank(e) {
     let buttons = null
         if  (this.props.rank > 1 && this.props.rank < this.props.count) {
           buttons = [
-            <button onClick={this.increaseRank}>Upvote</button>,
-            <button onClick={this.decreaseRank}>Downvote</button>
+            <button onClick={ (e) => this.props.increaseRank(e, this.props.id) }>Upvote</button>,
+            <button onClick={(e) => this.props.decreaseRank(e, this.props.id)}>Downvote</button>
           ]
         } else if (this.props.rank == 1) {
-          buttons = <button onClick={this.decreaseRank}>Downvote</button>
+          buttons = <button onClick={(e) => this.props.decreaseRank(e, this.props.id)}>Downvote</button>
         }
         else {
-          buttons = <button onClick={this.increaseRank}>Upvote</button>
+          buttons = <button onClick={(e) => this.props.increaseRank(e, this.props.id)}>Upvote</button>
         }
     return (
       <div>
