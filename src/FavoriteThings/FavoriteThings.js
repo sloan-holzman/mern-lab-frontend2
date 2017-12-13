@@ -6,10 +6,12 @@ class FavoriteThings extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      favoriteThings: []
+      favoriteThings: [],
+      count: 0
     }
     this.retrieveThings = this.retrieveThings.bind(this)
     this.setThings = this.setThings.bind(this)
+    this.forceUpdateMethod = this.forceUpdateMethod.bind(this)
   }
 
   retrieveThings() {
@@ -24,15 +26,21 @@ class FavoriteThings extends Component {
       })
   }
 
+  forceUpdateMethod() {
+    this.forceUpdate()
+  }
+
   setThings(data) {
     this.setState({
-      favoriteThings: data
+      favoriteThings: data,
+      count: (data.length)
     })
   }
 
   componentDidMount() {
     this.retrieveThings()
   }
+
 
   render() {
     return (
@@ -46,6 +54,8 @@ class FavoriteThings extends Component {
             image_url={thing.image_url}
             url={thing.url}
             rank={thing.rank}
+            forceUpdateMethod={this.forceUpdateMethod}
+            count={this.state.count}
           />
         ))}
       </div>
