@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import FavoriteThing from '../FavoriteThing/FavoriteThing'
+import React, { Component } from "react"
+import axios from "axios"
+import FavoriteThing from "../FavoriteThing/FavoriteThing"
 
 class FavoriteThings extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       favoriteThings: []
@@ -13,17 +13,18 @@ class FavoriteThings extends Component {
   }
 
   retrieveThings() {
-    axios.get('http://localhost:3000/api/favorite-things')
-    .then((response) => {
-      console.log(response)
-      this.setThings(response.data)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+    axios
+      .get("http://localhost:3001/api/favorite-things")
+      .then(response => {
+        console.log(response)
+        this.setThings(response.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
-  setThings (data) {
+  setThings(data) {
     this.setState({
       favoriteThings: data
     })
@@ -33,12 +34,17 @@ class FavoriteThings extends Component {
     this.retrieveThings()
   }
 
-  render () {
+  render() {
     return (
       <div>
         <h3>Favorite Things</h3>
         {this.state.favoriteThings.map(thing => (
-          <FavoriteThing key={thing.id} description={thing.description} image_url={thing.image_url} url={thing.url}/>
+          <FavoriteThing
+            key={thing._id}
+            description={thing.description}
+            image_url={thing.image_url}
+            url={thing.url}
+          />
         ))}
       </div>
     )

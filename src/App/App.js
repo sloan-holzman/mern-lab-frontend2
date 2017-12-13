@@ -1,25 +1,23 @@
-import React, { Component } from 'react';
-import Header from '../Header/Header.js'
-import NewFavorite from '../NewFavorite/NewFavorite.js'
-import FavoriteThings from '../FavoriteThings/FavoriteThings.js'
-import FavoriteThing from '../FavoriteThing/FavoriteThing.js'
+import React, { Component } from "react"
+import Header from "../Header/Header.js"
+import NewFavorite from "../NewFavorite/NewFavorite.js"
+import FavoriteThings from "../FavoriteThings/FavoriteThings.js"
+import FavoriteThing from "../FavoriteThing/FavoriteThing.js"
 import {
   BrowserRouter as Router,
   Link,
   Route,
   Redirect,
   Switch
-} from 'react-router-dom'
-
-
+} from "react-router-dom"
 
 class App extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
   }
 
   render() {
-    return(
+    return (
       <Router>
         <div className="App">
           <nav>
@@ -29,37 +27,28 @@ class App extends Component {
             <Switch>
               <Route
                 path="/new-favorite"
-                render={() => {
-                  return (
-                    <NewFavorite
-
-                    />
-                  )
+                render={props => {
+                  return <NewFavorite {...props} />
                 }}
               />
               <Route
                 path="/favorite-things"
                 render={() => {
-                  return (
-                    <FavoriteThings
-
-                    />
-                  )
+                  return <FavoriteThings />
                 }}
               />
               <Route
                 path="/*"
                 render={() => {
-                  return (
-                    <Redirect to="/favorite-things" />
-                  )
+                  return <Redirect to="/favorite-things" />
                 }}
               />
             </Switch>
           </main>
         </div>
-      </Router>);
+      </Router>
+    )
   }
 }
 
-export default App;
+export default App
