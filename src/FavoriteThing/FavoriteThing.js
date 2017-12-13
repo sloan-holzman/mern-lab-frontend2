@@ -16,13 +16,16 @@ increaseRank(e) {
   console.log("increase rank")
   axios
     .put(`http://localhost:3001/api/favorite-things/increase-rank/${this.props.id}`)
-    .then(() =>{
-      console.log("forcing update")
+    .then((response) =>{
+      console.log(response)
+      console.log("increased")
       this.props.forceUpdateMethod()
     })
     .catch(err => {
       console.log(err)
     })
+    console.log("increased!!")
+    this.props.forceUpdateMethod()
 }
 
 decreaseRank(e) {
