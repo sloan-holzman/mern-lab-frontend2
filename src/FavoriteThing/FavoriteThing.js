@@ -7,7 +7,9 @@ class FavoriteThing extends Component {
 
     return(
       <div>
-        <h3>FavoriteThing</h3>
+        <h4>{this.props.description}</h4>
+        <p>{this.props.url}</p>
+        <img src={this.props.image_url} alt={this.props.description}/>
       </div>
     )
   }
